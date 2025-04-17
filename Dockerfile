@@ -18,12 +18,13 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 WORKDIR /backend
 
-COPY Taskfile.yaml pyproject.toml uv.lock /backend/
+# Copy the full source code (including libs/core)
+COPY . /backend/
 
+# Now uv can resolve local path dependencies
 RUN uv sync --frozen
 
+# Drop privileges after deps installed
 USER user
-
-COPY --chown=user:user . /backend
 
 CMD ["task", "run"]

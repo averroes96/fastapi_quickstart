@@ -68,6 +68,10 @@ services:
       - "0.0.0.0:${SERVER_PORT}:${SERVER_PORT}"
     env_file:
       - .env
+    volumes:
+      - ./:/app
+      - .env:/app/.env
+      - ./settings.py:/app/settings.py
     depends_on:
       - postgresql
       - redis
@@ -77,14 +81,3 @@ services:
       interval: 30s
       timeout: 2s
       retries: 3
-    develop:
-      watch:
-        - action: "sync"
-          path: "./"
-          target: "/backend"
-        - action: "sync+restart"
-          path: "./.env"
-          target: "/backend/.env"
-        - action: "sync+restart"
-          path: "./settings.py"
-          target: "/backend/settings.py"

@@ -63,7 +63,6 @@ async def lifespan(app: FastAPI) -> typing.AsyncGenerator[None, None]:
     """FastAPI global initializer/destructor."""
     enable_logging()
     logger.info("Lifespan started.")
-    await _setup_redis(app=app)
     await _check_async_engine()
     yield
     await _close_redis(app=app)

@@ -99,7 +99,6 @@ tasks:
       --access-log
       --reload
       --reload-paths src/
-      --reload-paths .env
       {{.CLI_ARGS}}
 
   run:uvicorn:

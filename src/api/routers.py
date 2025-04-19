@@ -94,7 +94,7 @@ def _agents_router() -> APIRouter:
         tags=["agents"],
     )
 
-    from src.api.apps.agents.handlers import find_wining_product
+    from src.api.apps.agents.handlers import find_wining_product, generate_landing_page
 
     router.add_api_route(
         path="/winning-product",
@@ -106,6 +106,18 @@ def _agents_router() -> APIRouter:
         response_model=JSENDResponseSchema,
         status_code=status.HTTP_200_OK,
     )
+
+    router.add_api_route(
+        path="/generate-landing-page",
+        endpoint=generate_landing_page,
+        methods=["POST"],
+        name="generate_landing_page",
+        summary="Generate Landing Page",
+        description="Generate a landing page for the provided product.",
+        response_model=JSENDResponseSchema,
+        status_code=status.HTTP_200_OK,
+    )
+
     return router
 
 

@@ -2,6 +2,9 @@ from enum import Enum
 
 from pydantic import Field, BaseModel
 
+from typing_extensions import TypedDict
+from typing import List
+
 from core.schemas.requests import BaseRequestSchema
 from core.schemas.responses import BaseResponseSchema
 
@@ -60,3 +63,16 @@ class WinningProductResponseSchema(BaseResponseSchema):
 class AgentResponseSchema(BaseResponseSchema):
     winning_product: WinningProductResponseSchema
     suggestions: list[DummyOkaddoProduct]
+
+
+class MarketingVariation(BaseModel):
+    perspective: str
+    html: str
+    buy_button_message: str
+    announcement_bar: str
+
+class ProductInfo(BaseModel):
+    name: str
+    price: str
+    photos: List[str]
+    versions: List[MarketingVariation] | None

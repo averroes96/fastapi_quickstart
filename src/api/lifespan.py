@@ -65,6 +65,5 @@ async def lifespan(app: FastAPI) -> typing.AsyncGenerator[None, None]:
     logger.info("Lifespan started.")
     await _check_async_engine()
     yield
-    await _close_redis(app=app)
     await _dispose_all_connections()
     logger.info("Lifespan ended.")

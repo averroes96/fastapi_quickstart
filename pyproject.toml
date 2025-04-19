@@ -29,6 +29,9 @@ dependencies = [
     "typer>=0.15.1",
     "uuid7>=0.1.0",
     "casbin-async-sqlalchemy-adapter>=1.7.0",
+    "apify-client>=1.9.3",
+    "openai-agents",
+    "openai",
 ]
 
 [build-system]

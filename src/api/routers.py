@@ -88,8 +88,30 @@ def _tokens_router() -> APIRouter:
     return router
 
 
+def _agents_router() -> APIRouter:
+    router = APIRouter(
+        prefix="/agents",
+        tags=["agents"],
+    )
+
+    from src.api.apps.agents.handlers import find_wining_product
+
+    router.add_api_route(
+        path="/winning-product",
+        endpoint=find_wining_product,
+        methods=["POST"],
+        name="find_winning_product",
+        summary="Find Winning Product",
+        description="Find a winning product based on the provided niche.",
+        response_model=JSENDResponseSchema,
+        status_code=status.HTTP_200_OK,
+    )
+    return router
+
+
 def register_routers(app: FastAPI) -> None:
     app.include_router(router=_health_checks_router(), prefix=API_PREFIX)
     app.include_router(router=_registration_router(), prefix=API_PREFIX)
     app.include_router(router=_users_router(), prefix=API_PREFIX)
     app.include_router(router=_tokens_router(), prefix=API_PREFIX)
+    app.include_router(router=_agents_router(), prefix=API_PREFIX)

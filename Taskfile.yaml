@@ -111,6 +111,10 @@ tasks:
       --reload-dir "src"
       --reload-include ".env"
       {{.CLI_ARGS}}
+    
+  run:py:
+    desc: "Start web server via `Uvicorn` (development mode)."
+    cmd: "{{.RUNNER}} python -m src.api --reload"
 
   run:fastapi:
     desc: "Start web server via 'FastAPI' CLI (development mode)"

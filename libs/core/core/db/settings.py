@@ -16,7 +16,7 @@ class DBSettings(BaseSettings):
 
     APP_RDMS_ECHO: bool = Field(default=False)
     APP_RDMS_DRIVER_NAME: str = Field(default="postgresql+asyncpg")
-    APP_RDMS_HOST: str = Field(default="localhost")
+    APP_RDMS_HOST: str = Field(default="postgresql")
     APP_RDMS_PORT: int = Field(default=5432)
     APP_RDMS_DB: str = Field(default="postgres")
     APP_RDMS_USER: str = Field(default="postgres")
